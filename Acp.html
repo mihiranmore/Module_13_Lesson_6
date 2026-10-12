@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Digital Zoo Manager</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8e7;
+      text-align: center;
+      color: #333333;
+    }
+
+    h1 {
+      color: #8b4513;
+    }
+
+    #zoo {
+      width: 440px;
+      border: 3px solid #8b4513;
+      border-radius: 15px;
+      background-color: white;
+      margin: 20px auto;
+      padding: 15px;
+    }
+
+    .zone {
+      border: 2px solid #d2691e;
+      border-radius: 10px;
+      margin: 12px;
+      padding: 12px;
+      background-color: #fffaf0;
+      text-align: left;
+    }
+
+    .animal {
+      font-weight: bold;
+      color: #b45309;
+    }
+
+    button {
+      background-color: #8b4513;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #d2691e;
+    }
+
+    #output {
+      width: 420px;
+      border: 2px dashed #8b4513;
+      border-radius: 10px;
+      background-color: white;
+      margin: 20px auto;
+      padding: 12px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🐾 My Digital Zoo Manager</h1>
+
+  <p>
+    Explore animal zones and learn how JavaScript uses the DOM
+    to find, update, and connect webpage elements.
+  </p>
+
+  <div id="zoo">
+
+    <div class="zone" id="lionZone">
+      <h2>🦁 Lion Zone</h2>
+      <p>Animal: <span class="animal">Lion</span></p>
+    </div>
+
+    <div class="zone" id="deerZone">
+      <h2>🦌 Deer Zone</h2>
+      <p>Animal: <span class="animal">Deer</span></p>
+    </div>
+
+    <div class="zone" id="tigerZone">
+      <h2>🐅 Tiger Zone</h2>
+      <p>Animal: <span class="animal">Tiger</span></p>
+    </div>
+
+  </div>
+
+  <button onclick="manageZoo()">Manage Zoo</button>
+  <button onclick="highlightZones()">Highlight Zones</button>
+  <button onclick="resetZoo()">Reset Zoo</button>
+
+  <div id="output">
+    <strong>Zoo Manager Report</strong>
+    <p>Click a button to explore the zoo!</p>
+  </div>
+
+  <script>
+    function manageZoo() {
+      let zoo = document.getElementById("zoo");
+      let lion = document.getElementById("lionZone");
+      let deer = document.getElementById("deerZone");
+      let tiger = document.getElementById("tigerZone");
+      let output = document.getElementById("output");
+
+      // Finding the parent node
+      let parent = lion.parentNode.id;
+
+      // Finding child elements
+      let firstChild = zoo.children[0].id;
+      let lastChild = zoo.lastElementChild.id;
+
+      // Finding sibling elements
+      let nextSibling = lion.nextElementSibling.id;
+      let previousSibling = tiger.previousElementSibling.id;
+
+      // Finding the number of animal zones
+      let totalZones = zoo.children.length;
+
+      // Finding an animal using querySelector
+      let lionName = lion.querySelector(".animal").textContent;
+
+      // Updating animal information
+      deer.querySelector(".animal").textContent = "Spotted Deer";
+
+      output.innerHTML =
+        "<strong>🌳 Zoo Manager Report</strong><br><br>" +
+
+        "<strong>Parent and Child Nodes</strong><br>" +
+        "Parent of Lion Zone: " + parent + "<br>" +
+        "First child: " + firstChild + "<br>" +
+        "Last child: " + lastChild + "<br>" +
+        "Total animal zones: " + totalZones + "<br><br>" +
+
+        "<strong>Sibling Nodes</strong><br>" +
+        "Next to Lion Zone: " + nextSibling + "<br>" +
+        "Previous to Tiger Zone: " + previousSibling + "<br><br>" +
+
+        "<strong>Animal Information</strong><br>" +
+        "Lion's name: " + lionName + "<br>" +
+        "Deer name updated to Spotted Deer.<br><br>" +
+
+        "<strong>DOM Activity Completed!</strong><br>" +
+        "JavaScript has explored and updated the zoo.";
+    }
+
+    function highlightZones() {
+      let zones = document.querySelectorAll(".zone");
+
+      zones[0].style.backgroundColor = "#ffe0b2";
+      zones[1].style.backgroundColor = "#dcedc8";
+      zones[2].style.backgroundColor = "#fff9c4";
+
+      document.getElementById("output").innerHTML =
+        "<strong>🎨 Zoo Zones Highlighted!</strong><br><br>" +
+        "Lion Zone: Orange<br>" +
+        "Deer Zone: Light Green<br>" +
+        "Tiger Zone: Light Yellow<br><br>" +
+        "The styles were changed using JavaScript and the DOM.";
+    }
+
+    function resetZoo() {
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>
